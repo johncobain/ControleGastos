@@ -15,12 +15,11 @@ A aplicação deverá permitir o gerenciamento de pessoas, transações financei
 
 ## Estrutura do projeto
 
-```
+```plaintext
 ControleGastos
 ├── backend
 ├── frontend
 ├── docs
-├── docker
 └── docker-compose.yml
 ```
 
