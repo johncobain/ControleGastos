@@ -35,10 +35,6 @@ Aplicação React responsável pela interface do usuário e consumo da API.
 
 Documentação do projeto, diagramas e definições de arquitetura.
 
-### Docker
-
-Arquivos relacionados ao ambiente de desenvolvimento.
-
 ## Tecnologias
 
 ### Backend
