@@ -1,4 +1,4 @@
-@ControleGastos.API_HostAddress = http://localhost:5257
+@ControleGastos.API_HostAddress = http://localhost:5001
 
 # GET {{ControleGastos.API_HostAddress}}/weatherforecast/
 # Accept: application/json
