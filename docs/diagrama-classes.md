@@ -1,6 +1,6 @@
 # Diagrama de Classes
 
-![Diagrama de Classes](DiagramaClasses.svg)
+![Diagrama de Classes](diagrams/DiagramaClasses.svg)
 
 ## Entidades
 
