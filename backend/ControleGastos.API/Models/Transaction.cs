@@ -6,7 +6,7 @@ namespace ControleGastos.API.Models
     {
         public Guid Id { get; private set; }
         public string Description { get; private set; } = string.Empty;
-        [Column(TypeName = "decimal(18,2)")]
+        [Column(TypeName = "decimal(10,2)")]
         public decimal Value { get; private set; }
         public TrasactionType Type { get; private set; }
 
