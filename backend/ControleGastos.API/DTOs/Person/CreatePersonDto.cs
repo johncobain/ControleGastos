@@ -9,5 +9,5 @@ public class CreatePersonDto
   public string Name { get; set; } = string.Empty;
 
   [Required(ErrorMessage = "O campo 'BirthDate' é obrigatório.")]
-  public DateOnly BirthDate { get; set; }
+  public DateOnly? BirthDate { get; set; }
 }

@@ -1,5 +1,6 @@
 using ControleGastos.API.DTOs.Person;
 using ControleGastos.API.Interfaces;
+using ControleGastos.API.Models;
 
 namespace ControleGastos.API.Services;
 
@@ -12,23 +13,70 @@ public class PersonService : IPersonService
         _personRepository = personRepository;
     }
 
-    public Task<IEnumerable<PersonResponseDto>> GetAllAsync()
+    public async Task<IEnumerable<PersonResponseDto>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        var people = await _personRepository.GetAllAsync();
+
+        return people.Select(p => new PersonResponseDto
+        {
+            Id = p.Id,
+            Name = p.Name,
+            Age = p.GetAge()
+        });
     }
 
-    public Task<PersonResponseDto?> GetByIdAsync(Guid id)
+    public async Task<PersonResponseDto?> GetByIdAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var person = await _personRepository.GetByIdAsync(id);
+
+        if (person == null)
+        {
+            return null;
+        }
+
+        return new PersonResponseDto
+        {
+            Id = person.Id,
+            Name = person.Name,
+            Age = person.GetAge()
+        };
     }
 
-    public Task<PersonResponseDto> CreateAsync(CreatePersonDto createPersonDto)
+    public async Task<PersonResponseDto> CreateAsync(CreatePersonDto createPersonDto)
     {
-        throw new NotImplementedException();
+        var person = new Person(
+            name: createPersonDto.Name,
+            birthDate: createPersonDto.BirthDate!.Value
+        );
+
+        await _personRepository.CreateAsync(person);
+        await _personRepository.SaveChangesAsync();
+
+        return new PersonResponseDto
+        {
+            Id = person.Id,
+            Name = person.Name,
+            Age = person.GetAge()
+        };
     }
 
-    public Task<PersonResponseDto?> DeleteAsync(Guid id)
+    public async Task<PersonResponseDto?> DeleteAsync(Guid id)
     {
-        throw new NotImplementedException();
+        var person = await _personRepository.GetByIdAsync(id);
+
+        if (person == null)
+        {
+            return null;
+        }
+
+        await _personRepository.DeleteAsync(id);
+        await _personRepository.SaveChangesAsync();
+
+        return new PersonResponseDto
+        {
+            Id = person.Id,
+            Name = person.Name,
+            Age = person.GetAge()
+        };
     }
 }
