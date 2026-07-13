@@ -2,20 +2,21 @@
 
 ## Backend
 
-ASP.NET Core 9
-Entity Framework Core
-Swagger
+- ASP.NET Core 9
+- Entity Framework Core
+- Swagger
 
 ## Frontend
 
-React
-TypeScript
-Vite
-Axios
+- React
+- TypeScript
+- Vite
+- Axios
 
-## Persistencia
+## Banco de Dados
 
-PostgreSQL
+- PostgreSQL 16
+- Entity Framework Core
 
 ## Dev
 
