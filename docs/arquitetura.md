@@ -2,7 +2,7 @@
 
 ## Backend
 
-ASP.NET Core 8
+ASP.NET Core 9
 Entity Framework Core
 Swagger
 
