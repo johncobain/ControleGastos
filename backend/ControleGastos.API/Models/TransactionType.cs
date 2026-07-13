@@ -1,6 +1,6 @@
 namespace ControleGastos.API.Models
 {
-    public enum TrasactionType
+    public enum TransactionType
     {
         Expense,
         Income
