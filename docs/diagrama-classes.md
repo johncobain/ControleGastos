@@ -31,6 +31,7 @@ Atributos:
 - Value
 - Type
 - PersonId
+- CreatedAt
 
 ---
 
