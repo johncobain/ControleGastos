@@ -1,0 +1,29 @@
+.input-label {
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  padding: var(--spacing-mds);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface);
+
+  font-weight: 600;
+  color: var(--text);
+  transition: var(--transition);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.input-error {
+  border-color: var(--expense);
+}
+
+.input-error-message {
+  color: var(--expense);
+  font-size: var(--font-sm);
+}

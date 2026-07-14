@@ -32,9 +32,17 @@
 
   --spacing-xs: .25rem;
   --spacing-sm: .5rem;
+  --spacing-mds: .75rem;
   --spacing-md: 1rem;
+  --spacing-lgs: 1.25rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
+
+  --font-xs: .75rem;
+  --font-sm: .875rem;
+  --font-md: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.25rem;
 
   --transition: .3s ease;
 }
