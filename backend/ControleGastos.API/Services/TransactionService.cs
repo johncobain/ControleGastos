@@ -1,5 +1,6 @@
 using ControleGastos.API.DTOs.Person;
 using ControleGastos.API.DTOs.Transaction;
+using ControleGastos.API.Exceptions;
 using ControleGastos.API.Interfaces;
 using ControleGastos.API.Models;
 
@@ -61,6 +62,11 @@ public class TransactionService : ITransactionService
 
   public async Task<IEnumerable<TransactionResponseDto>> GetByPersonIdAsync(Guid personId)
   {
+    if (await _personRepository.GetByIdAsync(personId) == null)
+    {
+      throw new NotFoundException("Pessoa não encontrada.");
+    }
+
     var transactions = await _transactionRepository.GetByPersonIdAsync(personId);
 
     return transactions.Select(t => new TransactionResponseDto
@@ -86,12 +92,12 @@ public class TransactionService : ITransactionService
 
     if (person == null)
     {
-      throw new InvalidOperationException("Pessoa não encontrada.");
+      throw new NotFoundException("Pessoa não encontrada.");
     }
 
     if (person.GetAge() < 18 && createTransactionDto.Type == TransactionType.Income)
     {
-      throw new InvalidOperationException("Não é permitido criar transações de Receita para pessoas menores de idade.");
+      throw new BusinessRuleException("Não é permitido criar transações de Receita para pessoas menores de idade.");
     }
 
     var transaction = new Transaction(

@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using ControleGastos.API.Data;
+using ControleGastos.API.Exceptions;
 using ControleGastos.API.Interfaces;
 using ControleGastos.API.Repositories;
 using ControleGastos.API.Services;
@@ -47,6 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.UseAuthorization();
 

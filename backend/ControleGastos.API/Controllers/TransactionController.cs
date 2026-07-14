@@ -26,6 +26,10 @@ public class TransactionController : ControllerBase
   public async Task<ActionResult<TransactionResponseDto>> GetById([FromRoute] Guid id)
   {
     var transaction = await _transactionService.GetByIdAsync(id);
+    if (transaction == null)
+    {
+      return NotFound();
+    }
     return Ok(transaction);
   }
 
