@@ -1,0 +1,25 @@
+.table-container {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.table th {
+  background: var(--primary);
+  color: var(--text);
+}
+
+.table tbody tr:hover {
+  background: var(--border);
+}
