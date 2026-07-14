@@ -1,3 +1,5 @@
+using ControleGastos.API.DTOs.Common;
+
 namespace ControleGastos.API.Exceptions;
 
 public class ExceptionHandlerMiddleware
@@ -17,27 +19,52 @@ public class ExceptionHandlerMiddleware
     }
     catch (NotFoundException ex)
     {
-      context.Response.StatusCode = StatusCodes.Status404NotFound;
-      await context.Response.WriteAsJsonAsync(new
-      {
-        message = ex.Message
-      });
+      await WriteErrorResponseAsync(
+        context,
+        StatusCodes.Status404NotFound,
+        "NOT_FOUND",
+        ex.Message
+      );
     }
     catch (BusinessRuleException ex)
     {
-      context.Response.StatusCode = StatusCodes.Status400BadRequest;
-      await context.Response.WriteAsJsonAsync(new
-      {
-        message = ex.Message
-      });
+      await WriteErrorResponseAsync(
+        context,
+        StatusCodes.Status400BadRequest,
+        "BUSINESS_RULE_VIOLATION",
+        ex.Message
+      );
     }
     catch (Exception)
     {
-      context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-      await context.Response.WriteAsJsonAsync(new
-      {
-        message = "Ocorreu um erro interno no servidor."
-      });
+      await WriteErrorResponseAsync(
+        context,
+        StatusCodes.Status500InternalServerError,
+        "INTERNAL_SERVER_ERROR",
+        "Ocorreu um erro interno no servidor."
+      );
     }
+  }
+
+  private static async Task WriteErrorResponseAsync(
+    HttpContext context,
+    int statusCode,
+    string code,
+    string message,
+    IEnumerable<string>? errors = null
+  )
+  {
+    context.Response.StatusCode = statusCode;
+    context.Response.ContentType = "application/json";
+
+    var response = new ErrorResponseDto
+    {
+      Status = statusCode,
+      Code = code,
+      Message = message,
+      Errors = errors
+    };
+
+    await context.Response.WriteAsJsonAsync(response);
   }
 }

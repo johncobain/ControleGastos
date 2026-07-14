@@ -27,23 +27,12 @@ public class PersonController : ControllerBase
     public async Task<ActionResult<PersonResponseDto>> GetById([FromRoute] Guid id)
     {
         var person = await _personService.GetByIdAsync(id);
-
-        if (person == null)
-        {
-            return NotFound();
-        }
-
         return Ok(person);
     }
 
     [HttpPost]
     public async Task<ActionResult<PersonResponseDto>> Create([FromBody] CreatePersonDto createPersonDto)
     {
-        if (!ModelState.IsValid)
-        {
-            return BadRequest(ModelState);
-        }
-        
         var person = await _personService.CreateAsync(createPersonDto);
 
         return CreatedAtAction(
@@ -56,12 +45,7 @@ public class PersonController : ControllerBase
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        var person = await _personService.DeleteAsync(id);
-
-        if (person == null)
-        {
-            return NotFound();
-        }
+        await _personService.DeleteAsync(id);
 
         return NoContent();
     }

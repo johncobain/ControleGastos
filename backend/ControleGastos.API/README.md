@@ -104,4 +104,24 @@ A aplicação utiliza um middleware global para tratamento de exceções.
 - Violação de regra de negócio
 - Erros de validação
 
+Formato padrão de erro:
+
+```json
+{
+	"status": 400,
+	"code": "VALIDATION_ERROR",
+	"message": "Erro de validação.",
+	"errors": [
+		"O campo 'Name' é obrigatório."
+	]
+}
+```
+
+Codigos de erro utilizados:
+
+- `VALIDATION_ERROR`
+- `NOT_FOUND`
+- `BUSINESS_RULE_VIOLATION`
+- `INTERNAL_SERVER_ERROR`
+
 ---

@@ -1,9 +1,11 @@
 using System.Text.Json.Serialization;
 using ControleGastos.API.Data;
+using ControleGastos.API.DTOs.Common;
 using ControleGastos.API.Exceptions;
 using ControleGastos.API.Interfaces;
 using ControleGastos.API.Repositories;
 using ControleGastos.API.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,29 @@ builder.Services
     {
         options.JsonSerializerOptions.Converters.Add(
             new JsonStringEnumConverter());
+    })
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.InvalidModelStateResponseFactory = context =>
+        {
+            var errors = context.ModelState
+                .Where(x => x.Value?.Errors.Count > 0)
+                .SelectMany(x => x.Value!.Errors.Select(e =>
+                    string.IsNullOrWhiteSpace(e.ErrorMessage)
+                        ? $"Campo inválido: {x.Key}"
+                        : e.ErrorMessage))
+                .ToList();
+
+            var response = new ErrorResponseDto
+            {
+                Status = StatusCodes.Status400BadRequest,
+                Code = "VALIDATION_ERROR",
+                Message = "Erro de validação.",
+                Errors = errors
+            };
+
+            return new BadRequestObjectResult(response);
+        };
     });
 
 builder.Services.AddDbContext<AppDbContext>(options =>

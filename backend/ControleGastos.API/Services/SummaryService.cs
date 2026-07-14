@@ -1,6 +1,7 @@
 using ControleGastos.API.DTOs.Person;
 using ControleGastos.API.DTOs.Summary;
 using ControleGastos.API.DTOs.Transaction;
+using ControleGastos.API.Exceptions;
 using ControleGastos.API.Interfaces;
 using ControleGastos.API.Models;
 
@@ -41,12 +42,12 @@ public class SummaryService : ISummaryService
     };
   }
 
-  public async Task<PersonSummaryDto?> GetPersonSummaryAsync(Guid personId)
+  public async Task<PersonSummaryDto> GetPersonSummaryAsync(Guid personId)
   {
     var person = await _personRepository.GetByIdAsync(personId);
     if (person == null)
     {
-      return null;
+      throw new NotFoundException("Pessoa não encontrada.");
     }
 
     var transactions = await _transactionRepository.GetByPersonIdAsync(personId);

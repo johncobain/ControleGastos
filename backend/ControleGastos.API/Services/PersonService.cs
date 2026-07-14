@@ -1,4 +1,5 @@
 using ControleGastos.API.DTOs.Person;
+using ControleGastos.API.Exceptions;
 using ControleGastos.API.Interfaces;
 using ControleGastos.API.Models;
 
@@ -25,13 +26,13 @@ public class PersonService : IPersonService
         });
     }
 
-    public async Task<PersonResponseDto?> GetByIdAsync(Guid id)
+    public async Task<PersonResponseDto> GetByIdAsync(Guid id)
     {
         var person = await _personRepository.GetByIdAsync(id);
 
         if (person == null)
         {
-            return null;
+            throw new NotFoundException("Pessoa não encontrada.");
         }
 
         return new PersonResponseDto
@@ -60,23 +61,16 @@ public class PersonService : IPersonService
         };
     }
 
-    public async Task<PersonResponseDto?> DeleteAsync(Guid id)
+    public async Task DeleteAsync(Guid id)
     {
         var person = await _personRepository.GetByIdAsync(id);
 
         if (person == null)
         {
-            return null;
+            throw new NotFoundException("Pessoa não encontrada.");
         }
 
         await _personRepository.DeleteAsync(id);
         await _personRepository.SaveChangesAsync();
-
-        return new PersonResponseDto
-        {
-            Id = person.Id,
-            Name = person.Name,
-            Age = person.GetAge()
-        };
     }
 }

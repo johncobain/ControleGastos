@@ -26,10 +26,6 @@ public class TransactionController : ControllerBase
   public async Task<ActionResult<TransactionResponseDto>> GetById([FromRoute] Guid id)
   {
     var transaction = await _transactionService.GetByIdAsync(id);
-    if (transaction == null)
-    {
-      return NotFound();
-    }
     return Ok(transaction);
   }
 
@@ -43,11 +39,6 @@ public class TransactionController : ControllerBase
   [HttpPost]
   public async Task<ActionResult<TransactionResponseDto>> Create([FromBody] CreateTransactionDto createTransactionDto)
   {
-    if (!ModelState.IsValid)
-    {
-      return BadRequest(ModelState);
-    }
-
     var transaction = await _transactionService.CreateAsync(createTransactionDto);
 
     return CreatedAtAction(

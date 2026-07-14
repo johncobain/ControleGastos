@@ -6,9 +6,9 @@ public interface IPersonService
 {
     Task<IEnumerable<PersonResponseDto>> GetAllAsync();
 
-    Task<PersonResponseDto?> GetByIdAsync(Guid id);
+    Task<PersonResponseDto> GetByIdAsync(Guid id);
 
     Task<PersonResponseDto> CreateAsync(CreatePersonDto createPersonDto);
 
-    Task<PersonResponseDto?> DeleteAsync(Guid id);
+    Task DeleteAsync(Guid id);
 }

@@ -37,13 +37,13 @@ public class TransactionService : ITransactionService
     });
   }
 
-  public async Task<TransactionResponseDto?> GetByIdAsync(Guid id)
+  public async Task<TransactionResponseDto> GetByIdAsync(Guid id)
   {
     var transaction = await _transactionRepository.GetByIdAsync(id);
 
     if (transaction == null)
     {
-      return null;
+      throw new NotFoundException("Transação não encontrada.");
     }
 
     return new TransactionResponseDto

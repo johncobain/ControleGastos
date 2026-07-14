@@ -6,7 +6,7 @@ public interface ITransactionService
 {
     Task<IEnumerable<TransactionResponseDto>> GetAllAsync();
 
-    Task<TransactionResponseDto?> GetByIdAsync(Guid id);
+    Task<TransactionResponseDto> GetByIdAsync(Guid id);
 
     Task<IEnumerable<TransactionResponseDto>> GetByPersonIdAsync(Guid personId);
 
