@@ -1,8 +1,6 @@
 import type { Person } from "./person.ts";
 
-export type TransactionType =
-  | "Income"
-  | "Expense";
+export type TransactionType = "Income" | "Expense";
 
 export interface Transaction {
   id: string;
