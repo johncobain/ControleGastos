@@ -4,6 +4,8 @@ import "./styles.css";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
+  id: string;
+  className?: string;
 }
 
 const Input = ({

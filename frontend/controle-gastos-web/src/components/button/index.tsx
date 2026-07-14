@@ -6,6 +6,7 @@ type ButtonVariant = "primary" | "success" | "warning" | "info" | "error";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   loading?: boolean;
+  className?: string
 }
 
 const Button = ({
