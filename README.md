@@ -27,6 +27,8 @@ ControleGastos
 
 API REST desenvolvida com ASP.NET Core responsável pelas regras de negócio, persistência de dados e comunicação com o banco.
 
+> [Documentação do backend](backend/ControleGastos.API/README.md)
+
 ### Frontend
 
 Aplicação React responsável pela interface do usuário e consumo da API.
@@ -35,27 +37,11 @@ Aplicação React responsável pela interface do usuário e consumo da API.
 
 Documentação do projeto, diagramas e definições de arquitetura.
 
-## Tecnologias
-
-### Backend
-
-- ASP.NET Core
-- C#
-- Entity Framework Core
-- PostgreSQL
-
-### Frontend
-
-- React
-- TypeScript
-- Vite
-- Axios
-
-### Infraestrutura
-
-- Docker
-- Docker Compose
-- Git
+> [arquitetura](docs/arquitetura.md)
+>
+> [diagrama de classes](docs/diagrama-classes.md)
+>
+> [regras de negócio](docs/regras-negocio.md)
 
 ## Funcionalidades
 
@@ -63,10 +49,6 @@ Documentação do projeto, diagramas e definições de arquitetura.
 - Cadastro de transações
 - Consulta consolidada de receitas, despesas e saldo
 - Persistência em banco de dados PostgreSQL
-
-## Status
-
-O projeto encontra-se em desenvolvimento.
 
 ## Autor
 
