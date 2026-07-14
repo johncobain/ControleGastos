@@ -1,0 +1,13 @@
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-xl);
+}
+
+.empty-state h3 {
+  font-size: var(--font-lg);
+  color: var(--text-h);
+}
+
+.empty-state p {
+  color: var(--text-muted);
+}
