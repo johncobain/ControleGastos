@@ -8,10 +8,13 @@
 
 ## Frontend
 
-- React
+- React 19
 - TypeScript
 - Vite
+- React Router DOM
 - Axios
+- React Hook Form
+- Zod
 
 ## Banco de Dados
 
