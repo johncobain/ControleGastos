@@ -1,3 +1,4 @@
+using ControleGastos.API.DTOs.Person;
 using ControleGastos.API.Models;
 
 namespace ControleGastos.API.DTOs.Transaction;
@@ -12,5 +13,5 @@ public class TransactionResponseDto
 
     public TransactionType Type { get; set; }
 
-    public Guid PersonId { get; set; }
+    public PersonResponseDto? Person { get; set; }
 }

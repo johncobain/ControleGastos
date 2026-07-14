@@ -21,7 +21,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
       .HasPrecision(10, 2);
 
     builder.Property(t => t.Type)
-      .IsRequired();
+      .IsRequired()
+      .HasConversion<string>();
     
     builder.Property(t => t.PersonId)
       .IsRequired();

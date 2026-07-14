@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using ControleGastos.API.Data;
 using ControleGastos.API.Interfaces;
 using ControleGastos.API.Repositories;
@@ -15,9 +16,16 @@ builder.Services.AddSwaggerGen(options =>
         Title = "Controle de Gastos API",
         Description = "API para controle de gastos residenciais",
     });
+    options.UseInlineDefinitionsForEnums();
 });
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(
+            new JsonStringEnumConverter());
+    });
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(

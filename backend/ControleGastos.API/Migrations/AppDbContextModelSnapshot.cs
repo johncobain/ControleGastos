@@ -55,8 +55,9 @@ namespace ControleGastos.API.Migrations
                     b.Property<Guid>("PersonId")
                         .HasColumnType("uuid");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("integer");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Value")
                         .HasPrecision(10, 2)
