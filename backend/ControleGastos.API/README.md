@@ -108,12 +108,12 @@ Formato padrão de erro:
 
 ```json
 {
-	"status": 400,
-	"code": "VALIDATION_ERROR",
-	"message": "Erro de validação.",
-	"errors": [
-		"O campo 'Name' é obrigatório."
-	]
+"status": 400,
+"code": "VALIDATION_ERROR",
+"message": "Erro de validação.",
+"errors": [
+  "O campo 'Name' é obrigatório."
+]
 }
 ```
 
