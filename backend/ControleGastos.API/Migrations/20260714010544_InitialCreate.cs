@@ -32,7 +32,8 @@ namespace ControleGastos.API.Migrations
                     Description = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Value = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
                     Type = table.Column<string>(type: "text", nullable: false),
-                    PersonId = table.Column<Guid>(type: "uuid", nullable: false)
+                    PersonId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

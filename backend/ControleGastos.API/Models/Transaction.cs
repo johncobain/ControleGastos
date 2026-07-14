@@ -13,6 +13,8 @@ namespace ControleGastos.API.Models
         public Guid PersonId { get; private set; }
         public Person Person { get; private set; } = null!;
 
+        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+
         private Transaction() { }
 
         public Transaction(

@@ -32,7 +32,8 @@ public class TransactionService : ITransactionService
         Id = person.Id,
         Name = person.Name,
         Age = person.GetAge()
-      } : null
+      } : null,
+      CreatedAt = t.CreatedAt
     });
   }
 
@@ -56,7 +57,8 @@ public class TransactionService : ITransactionService
         Id = person.Id,
         Name = person.Name,
         Age = person.GetAge()
-      } : null
+      } : null,
+      CreatedAt = transaction.CreatedAt
     };
   }
 
@@ -80,7 +82,8 @@ public class TransactionService : ITransactionService
         Id = person.Id,
         Name = person.Name,
         Age = person.GetAge()
-      } : null
+      } : null,
+      CreatedAt = t.CreatedAt
     });
   }
 
@@ -121,7 +124,8 @@ public class TransactionService : ITransactionService
         Id = personT.Id,
         Name = personT.Name,
         Age = personT.GetAge()
-      } : null
+      } : null,
+      CreatedAt = transaction.CreatedAt
     };
   }
 }

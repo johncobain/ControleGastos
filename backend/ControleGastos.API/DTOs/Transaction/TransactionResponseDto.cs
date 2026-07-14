@@ -14,4 +14,6 @@ public class TransactionResponseDto
     public TransactionType Type { get; set; }
 
     public PersonResponseDto? Person { get; set; }
+
+    public DateTime CreatedAt { get; set; }
 }

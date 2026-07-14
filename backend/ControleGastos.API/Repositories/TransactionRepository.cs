@@ -20,7 +20,9 @@ public class TransactionRepository : ITransactionRepository
 
     public async Task<IEnumerable<Transaction>> GetAllAsync()
     {
-        return await _context.Transactions.ToListAsync();
+        return await _context.Transactions
+            .OrderByDescending(t => t.CreatedAt)
+            .ToListAsync();
     }
 
     public async Task<Transaction?> GetByIdAsync(Guid id)
@@ -30,7 +32,10 @@ public class TransactionRepository : ITransactionRepository
 
     public async Task<IEnumerable<Transaction>> GetByPersonIdAsync(Guid personId)
     {
-        return await _context.Transactions.Where(t => t.PersonId == personId).ToListAsync();
+        return await _context.Transactions
+            .Where(t => t.PersonId == personId)
+            .OrderByDescending(t => t.CreatedAt)
+            .ToListAsync();
     }
 
     public async Task<Transaction> CreateAsync(Transaction transaction)

@@ -26,6 +26,9 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
     
     builder.Property(t => t.PersonId)
       .IsRequired();
+
+    builder.Property(t => t.CreatedAt)
+      .IsRequired();
     
     builder.HasOne(t => t.Person)
       .WithMany(p => p.Transactions)
