@@ -2,22 +2,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: var(--spacing-lg) var(--spacing-xl);
   background-color: var(--primary);
   border-bottom: 1px solid var(--border);
 }
 
 .navbar nav {
   display: flex;
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
   align-items: center;
 }
 
 .navbar a {
-  color: var(--text);
-  text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s ease;
+  transition: color var(--transition);
 }
 
 .navbar a:hover {
