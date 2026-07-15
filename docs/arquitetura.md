@@ -14,6 +14,7 @@
 - React Router DOM
 - Axios
 - React Hook Form
+- React Toastify
 - Zod
 
 ## Banco de Dados

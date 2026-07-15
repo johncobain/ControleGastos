@@ -4,12 +4,14 @@ import "./styles.css";
 interface ModalProps extends PropsWithChildren {
   isOpen: boolean;
   title?: string;
+  footer?: React.ReactNode;
   onClose: () => void;
 }
 
 const Modal = ({
   isOpen,
   title,
+  footer,
   onClose,
   children,
 }: ModalProps) => {
@@ -35,6 +37,11 @@ const Modal = ({
         <div className="modal-content">
           {children}
         </div>
+        {footer && (
+          <div className="modal-footer">
+            {footer}
+          </div>
+        )}
       </div>
     </div>
   );
