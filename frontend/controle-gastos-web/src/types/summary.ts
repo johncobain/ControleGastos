@@ -8,6 +8,7 @@ export interface Summary {
 export interface PersonSummary {
   id: string;
   name: string;
+  age: number;
   totalIncome: number;
   totalExpense: number;
   balance: number;
