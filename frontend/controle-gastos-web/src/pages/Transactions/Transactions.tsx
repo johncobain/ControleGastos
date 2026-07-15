@@ -68,36 +68,7 @@ const Transactions = () => {
   };
 
   useEffect(() => {
-    let isMounted = true;
-
-    Promise.all([
-      transactionService.getAll(),
-      summaryService.getSummary(),
-    ])
-      .then(([transactionsData, summaryData]) => {
-        if (!isMounted) {
-          return;
-        }
-        setTransactions(transactionsData);
-        setSummary(summaryData);
-      })
-      .catch((error) => {
-        if (!isMounted) {
-          return;
-        }
-        const errorMessage = getErrorMessage(error);
-        setError(errorMessage);
-        toast.error(errorMessage);
-      })
-      .finally(() => {
-        if (!isMounted) {
-          return;
-        }
-        setLoading(false);
-      });
-    return () =>{
-      isMounted = false;
-    }
+    loadData();
   }, []);
 
   if (error) {

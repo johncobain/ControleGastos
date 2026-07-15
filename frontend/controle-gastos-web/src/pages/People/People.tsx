@@ -109,33 +109,19 @@ const People = () => {
   };
 
   const loadData = async () => {
-    let isMounted = true;
-  
     summaryService.getSummary()
       .then((summary) => {
-        if (!isMounted) {
-          return;
-        }
         setSummary(summary);
         setPeople(summary.people);
       })
       .catch((error) => {
-        if (!isMounted) {
-          return;
-        }
         const errorMessage = getErrorMessage(error);
         setError(errorMessage);
         toast.error(errorMessage);
       })
       .finally(() => {
-        if (!isMounted) {
-          return;
-        }
         setLoading(false);
       });
-    return () => {
-      isMounted = false;
-    };
   }
 
   useEffect(()=> {
@@ -235,31 +221,35 @@ const People = () => {
           </>
         )}
       </main>
-      <ConfirmDialog
-        isOpen={isConfirmOpen}
-        title="Confirmar exclusao"
-        message={
-          selectedPerson
-            ? `Deseja realmente excluir ${selectedPerson.name}?`
-            : "Deseja realmente excluir esta pessoa?"
-        }
-        loading={isDeleting}
-        onCancel={() => {
-          if (isDeleting) {
-            return;
+      {isConfirmOpen && (
+        <ConfirmDialog
+          isOpen={isConfirmOpen}
+          title="Confirmar exclusao"
+          message={
+            selectedPerson
+              ? `Deseja realmente excluir ${selectedPerson.name}?`
+              : "Deseja realmente excluir esta pessoa?"
           }
-          setIsConfirmOpen(false);
-          setSelectedPerson(null);
-        }}
-        onConfirm={handleConfirmDelete}
-      />
-      <CreatePersonModal
-        isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-        onSuccess={async () => {
-          await loadData();
-        }}
-      />
+          loading={isDeleting}
+          onCancel={() => {
+            if (isDeleting) {
+              return;
+            }
+            setIsConfirmOpen(false);
+            setSelectedPerson(null);
+          }}
+          onConfirm={handleConfirmDelete}
+        />
+      )}
+      {isCreateModalOpen && (
+        <CreatePersonModal
+          isOpen={isCreateModalOpen}
+          onClose={() => setIsCreateModalOpen(false)}
+          onSuccess={async () => {
+            await loadData();
+          }}
+        />
+      )}
       {isDetailsModalOpen && (
         <PersonDetailsModal
           isOpen={isDetailsModalOpen}
