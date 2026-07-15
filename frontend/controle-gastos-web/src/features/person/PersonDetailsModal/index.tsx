@@ -34,9 +34,32 @@ const PersonDetailsModal = ({
   const [createTransactionOpen, setCreateTransactionOpen] = useState(false);
 
   const loadData = async () => {
+    setLoading(true);
+    await Promise.all([
+      summaryService.getPersonSummary(personId),
+      transactionService.getByPersonId(personId),
+    ])
+      .then(([summaryData, transactionsData]) => {
+        setSummary(summaryData);
+        setTransactions(transactionsData);
+      })
+      .catch((error) => {
+        const errorMessage = getErrorMessage(error);
+        toast.error(errorMessage);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+    
     let isMounted = true;
 
-    await Promise.all([
+    Promise.all([
       summaryService.getPersonSummary(personId),
       transactionService.getByPersonId(personId),
     ]).then(([summaryData, transactionsData]) => {
@@ -63,14 +86,7 @@ const PersonDetailsModal = ({
     return () => {
       isMounted = false;
     }
-  };
-
-  useEffect(() => {
-    if (!isOpen) {
-      return;
-    }
-    loadData();
-  }, [isOpen]);
+  }, [isOpen, personId]);
 
   return (
     <Modal
