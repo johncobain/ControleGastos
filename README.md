@@ -1,5 +1,7 @@
 # ControleGastos
 
+![Home](docs/telas/Home.png)
+
 Sistema Full Stack para gerenciamento de gastos residenciais.
 
 A aplicação permite cadastrar pessoas, registrar transações financeiras (receitas e despesas) e consultar resumos financeiros por pessoa e de forma consolidada.
@@ -152,6 +154,8 @@ http://localhost:5173
 - [Diagrama de Classes](docs/diagrama-classes.md)
 
 - [Regras de Negócio](docs/regras-negocio.md)
+
+- [Telas da Aplicação](docs/telas.md)
 
 ---
 
