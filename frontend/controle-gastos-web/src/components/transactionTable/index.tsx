@@ -14,13 +14,18 @@ const TransactionTable = ({
       <thead>
         <tr>
           <th>Descrição</th>
-          <th>Valor</th>
           <th>Tipo</th>
+          <th>Valor</th>
           <th>Pessoa</th>
           <th>Data</th>
         </tr>
       </thead>
       <tbody>
+        {transactions.length === 0 && (
+          <tr>
+            <td colSpan={5}>Nenhuma transação encontrada.</td>
+          </tr>
+        )}
         {transactions.map(transaction => (
           <tr key={transaction.id}>
             <td>{transaction.description}</td>
