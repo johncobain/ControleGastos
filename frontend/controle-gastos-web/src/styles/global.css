@@ -6,6 +6,39 @@
   box-sizing: border-box;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+
+  transition: background .2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-hover);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 body {
     background: var(--background);
     font-family: var(--sans);
