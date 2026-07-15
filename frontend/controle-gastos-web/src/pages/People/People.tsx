@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import Button from "../../components/button";
 
@@ -15,6 +15,7 @@ import PageHeader from "../../components/pageHeader";
 import ConfirmDialog from "../../components/confirmDialog";
 import CreatePersonModal from "../../features/person/CreatePersonModal";
 import PersonDetailsModal from "../../features/person/PersonDetailsModal";
+import Input from "../../components/input";
 
 const People = () => {
   const [people, setPeople] = useState<PersonSummary[]>([]);
@@ -22,12 +23,47 @@ const People = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const [nameFilter, setNameFilter] = useState("");
+  const [ageFilter, setAgeFilter] = useState("");
+  const [minBalance, setMinBalance] = useState("");
+  const [maxBalance, setMaxBalance] = useState("");
+
   const [selectedPerson, setSelectedPerson] = useState<PersonSummary | null>(null);
   
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const filteredPeople = useMemo(() => {
+    let filtered = [...people];
+
+    if (nameFilter) {
+      filtered = filtered.filter(p => 
+        p.name.toLowerCase().includes(nameFilter.toLowerCase())
+      );
+    }
+
+    if (ageFilter) {
+      filtered = filtered.filter(p =>
+        p.age === Number(ageFilter)
+      );
+    }
+
+    if (minBalance) {
+      filtered = filtered.filter(p =>
+        p.balance >= Number(minBalance)
+      );
+    }
+
+    if (maxBalance) {
+      filtered = filtered.filter(p =>
+        p.balance <= Number(maxBalance)
+      );
+    }
+    
+    return filtered;
+  }, [nameFilter, ageFilter, minBalance, maxBalance, people]);
 
   const handleDetails = (id: string) => {
     const person = people.find((item) => item.id === id);
@@ -146,24 +182,57 @@ const People = () => {
       )}
       <main>
         {loading && <Loading message="Carregando dados..."/>}
-        {!loading && people.length === 0 && (
-          <EmptyState
-            title="Nenhuma pessoa cadastrada"
-            description="Clique no botão 'Nova Pessoa' para cadastrar uma nova pessoa."
-          />
-        )}
-
-        {!loading && people.length > 0 && (
-          <div className="flex-column gap-lg">
-            {people.map(person=>(
-              <PersonCard
-                key={person.id}
-                person={person}
-                onDetails={() => handleDetails(person.id)}
-                onDelete={() => handleDelete(person.id)}
+        {!loading && (
+          <>
+            <div className="flex gap-md mb-lg">
+              <Input
+                label="Pesquisar Nome"
+                id="name"
+                value={nameFilter}
+                onChange={(e) => setNameFilter(e.target.value)}
               />
-            ))}
-          </div>
+              <Input
+                label="Idade"
+                id="age"
+                type="number"
+                value={ageFilter}
+                onChange={(e) => setAgeFilter(e.target.value)}
+              />
+              <Input
+                label="Saldo mínimo"
+                id="minBalance"
+                type="number"
+                step="0.01"
+                value={minBalance}
+                onChange={(e) => setMinBalance(e.target.value)}
+              />
+              <Input
+                label="Saldo máximo"
+                id="maxBalance"
+                type="number"
+                step="0.01"
+                value={maxBalance}
+                onChange={(e) => setMaxBalance(e.target.value)}
+              />
+            </div>
+            {filteredPeople.length === 0 ? (
+              <EmptyState
+                title="Nenhuma pessoa encontrada"
+                description="Não há pessoas cadastradas ou que correspondam aos filtros aplicados."
+              />
+            ) : (
+              <div className="flex-column gap-lg">
+                {filteredPeople.map(person=>(
+                  <PersonCard
+                    key={person.id}
+                    person={person}
+                    onDetails={() => handleDetails(person.id)}
+                    onDelete={() => handleDelete(person.id)}
+                  />
+                ))}
+              </div>
+            )}
+          </>
         )}
       </main>
       <ConfirmDialog
@@ -191,15 +260,17 @@ const People = () => {
           await loadData();
         }}
       />
-      <PersonDetailsModal
-        isOpen={isDetailsModalOpen}
-        onClose={() => {
-          setIsDetailsModalOpen(false);
-          setSelectedPerson(null);
-        }}
-        personId={selectedPerson?.id || ""}
-        onNewTransaction={loadData}
-      />
+      {isDetailsModalOpen && (
+        <PersonDetailsModal
+          isOpen={isDetailsModalOpen}
+          onClose={() => {
+            setIsDetailsModalOpen(false);
+            setSelectedPerson(null);
+          }}
+          personId={selectedPerson?.id || ""}
+          onNewTransaction={loadData}
+        />
+      )}
     </div>
   );
 }
