@@ -64,6 +64,7 @@ public class SummaryService : ISummaryService
     {
       Id = person.Id,
       Name = person.Name,
+      Age = person.GetAge(),
       TotalIncome = totalIncome,
       TotalExpense = totalExpense,
       Balance = totalIncome - totalExpense

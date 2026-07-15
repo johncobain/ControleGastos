@@ -6,6 +6,8 @@ public class PersonSummaryDto
 
     public string Name { get; set; } = string.Empty;
 
+    public int Age { get; set; }
+
     public decimal TotalIncome { get; set; }
 
     public decimal TotalExpense { get; set; }
