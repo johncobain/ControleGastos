@@ -100,45 +100,32 @@ const CreateTransactionModal = ({
           error={errors.value?.message}
         />
 
-        <label>
-          Tipo
-          <select
-            {...register("type")}
-            className="input"
-          >
-            <option value="Expense">Despesa</option>
-            <option value="Income">Receita</option>
-          </select>
-        </label>
+        <Input
+          label="Tipo"
+          id="type"
+          options={[
+            { value: "Income", label: "Receita" },
+            { value: "Expense", label: "Despesa" },
+          ]}
+          {...register("type")}
+          error={errors.type?.message}
+        />
 
-        <label>
-          Pessoa
-          <select
-            disabled={fixedPerson}
-            {...register("personId")}
-            className="input"
-          >
-            {!fixedPerson && (
-              <>
-                <option value="">Selecione uma pessoa</option>
-                {people.map(person=>(
-                  <option
-                    key={person.id}
-                    value={person.id}
-                  >
-                    {person.name}
-                  </option>
-                ))}
-              </>
-            )}
-
-            {fixedPerson && (
-              <option value={person.id}>
-                {person.name}
-              </option>
-            )}
-          </select>
-        </label>
+        <Input
+          label="Pessoa"
+          id="person"
+          disabled={fixedPerson}
+          options={
+            fixedPerson && person
+              ? [{ value: person.id, label: person.name }]
+              : [
+                { value: "", label: "Selecione uma pessoa" },
+                ...people.map(p => ({ value: p.id, label: p.name }))
+              ]
+          }
+          {...register("personId")}
+          error={errors.personId?.message}
+        />
         <div className="flex justify-between mt-md">
           <Button
             variant="error"
