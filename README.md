@@ -1,54 +1,159 @@
 # ControleGastos
 
-Projeto desenvolvido como desafio técnico para implementação de um sistema de controle de gastos residenciais.
+Sistema Full Stack para gerenciamento de gastos residenciais.
 
-## Objetivo
+A aplicação permite cadastrar pessoas, registrar transações financeiras (receitas e despesas) e consultar resumos financeiros por pessoa e de forma consolidada.
 
-Desenvolver uma aplicação Full Stack utilizando:
-
-- ASP.NET Core (C#)
-- React
-- TypeScript
-- PostgreSQL
-
-A aplicação deverá permitir o gerenciamento de pessoas, transações financeiras e consulta consolidada de receitas, despesas e saldo.
-
-## Estrutura do projeto
-
-```plaintext
-ControleGastos
-├── backend
-├── frontend
-├── docs
-└── docker-compose.yml
-```
+## Tecnologias
 
 ### Backend
 
-API REST desenvolvida com ASP.NET Core responsável pelas regras de negócio, persistência de dados e comunicação com o banco.
-
-> [Documentação do backend](backend/ControleGastos.API/README.md)
+- ASP.NET Core 9
+- Entity Framework Core
+- PostgreSQL
+- Docker
+- Swagger
 
 ### Frontend
 
-Aplicação React responsável pela interface do usuário e consumo da API.
+- React 19
+- TypeScript
+- Vite
+- Axios
+- React Router DOM
+- React Hook Form
+- Zod
+- React Toastify
 
-### Docs
+---
 
-Documentação do projeto, diagramas e definições de arquitetura.
+## Estrutura
 
-> [arquitetura](docs/arquitetura.md)
->
-> [diagrama de classes](docs/diagrama-classes.md)
->
-> [regras de negócio](docs/regras-negocio.md)
+```plaintext
+ControleGastos
+├── backend/
+│   └── ControleGastos.API
+├── frontend/
+│   └── controle-gastos-web
+├── docs/
+└── docker-compose.yml
+```
+
+## Como executar
+
+### Pré-requisitos
+
+- .NET SDK 9
+- Docker
+- Node.js 22+
+- npm
+
+Também é necessário instalar a ferramenta do Entity Framework Core:
+
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+Caso já esteja instalada:
+
+```bash
+dotnet tool update --global dotnet-ef
+```
+
+### 1. Clonar o projeto
+
+```bash
+git clone <repositorio>
+```
+
+---
+
+### 2. Subir o PostgreSQL
+
+Na raiz do projeto:
+
+```bash
+docker compose up -d
+```
+
+---
+
+### 3. Executar o Backend
+
+```bash
+cd backend/ControleGastos.API
+
+dotnet ef database update
+
+dotnet watch run
+```
+
+API disponível em:
+
+```bash
+http://localhost:5001
+```
+
+Swagger:
+
+```bash
+http://localhost:5001/swagger
+```
+
+---
+
+### 4. Executar o Frontend
+
+```bash
+cd frontend/controle-gastos-web
+
+npm install
+
+npm run dev
+```
+
+Aplicação disponível em:
+
+```bash
+http://localhost:5173
+```
+
+---
 
 ## Funcionalidades
 
-- Cadastro de pessoas
-- Cadastro de transações
-- Consulta consolidada de receitas, despesas e saldo
-- Persistência em banco de dados PostgreSQL
+### Pessoas
+
+- Cadastro
+- Listagem
+- Exclusão
+- Resumo financeiro individual
+
+### Transações
+
+- Cadastro
+- Listagem
+- Histórico por pessoa
+
+### Dashboard
+
+- Resumo financeiro geral
+- Totais consolidados
+- Acesso rápido às funcionalidades
+
+## Documentação
+
+- [Backend](backend/ControleGastos.API/README.md)
+
+- [Frontend](frontend/controle-gastos-web/README.md)
+
+- [Arquitetura](docs/arquitetura.md)
+
+- [Diagrama de Classes](docs/diagrama-classes.md)
+
+- [Regras de Negócio](docs/regras-negocio.md)
+
+---
 
 ## Autor
 
