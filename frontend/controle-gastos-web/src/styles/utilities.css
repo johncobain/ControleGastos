@@ -82,3 +82,13 @@
 .text-secondary {
   color: var(--text-muted);
 }
+
+.bg-primary {
+  background-color: var(--primary);
+  color: var(--text-h);
+}
+
+.bg-surface {
+  background-color: var(--surface);
+  color: var(--text);
+}
