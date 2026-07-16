@@ -85,6 +85,8 @@ docker compose up -d
 ```bash
 cd backend/ControleGastos.API
 
+dotnet build
+
 dotnet ef database update
 
 dotnet watch run
