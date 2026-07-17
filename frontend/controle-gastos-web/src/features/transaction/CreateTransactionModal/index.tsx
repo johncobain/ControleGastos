@@ -4,7 +4,7 @@ import personService from "../../../services/personService";
 import { toast } from "react-toastify";
 import { getErrorMessage } from "../../../utils/getErrorMessage";
 import { createTransactionSchema, type CreateTransactionForm } from "./schema";
-import { zodResolver } from "@hookform/resolvers/zod/src/index.js";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import transactionService from "../../../services/transactionService";
 import Modal from "../../../components/modal";
