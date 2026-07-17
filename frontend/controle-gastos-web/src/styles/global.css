@@ -67,3 +67,32 @@ a {
     margin: 0 auto;
     padding: 32px;
 }
+
+.page-summary {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+  .summary-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .summary-grid>:last-child{
+    grid-column:1/-1;
+    text-align:center;
+  }
+
+  .summary-grid > * h2 {
+    font-size: var(--font-md);
+  }
+}

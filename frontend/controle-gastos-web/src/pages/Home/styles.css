@@ -11,7 +11,7 @@
 .dashboard-hero-breakdown {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: var(--spacing-xs);
   font-size: var(--font-md);
   opacity: 0.85;
 }
@@ -31,4 +31,28 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .dashboard-hero-value {
+    font-size: 2rem;
+  }
+
+  .dashboard-hero-breakdown {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  .dashboard-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-quick-actions-grid {
+    flex-direction: column;
+  }
+
+  .dashboard-quick-actions-grid > * {
+    width: 100%;
+  }
 }

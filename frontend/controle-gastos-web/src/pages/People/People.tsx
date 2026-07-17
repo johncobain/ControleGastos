@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import Button from "../../components/button";
 
-import "./styles.css";
 import type { PersonSummary, Summary } from "../../types/summary";
 import summaryService from "../../services/summaryService";
 import personService from "../../services/personService";
