@@ -1,8 +1,24 @@
 # ControleGastos
 
-![Home](docs/telas/Home.png)
+![Home](docs/telas/demo.gif)
+
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![ASP.NET](https://img.shields.io/badge/ASP.NET_Core-9-512BD4?logo=dotnet)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?logo=postgresql)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 Sistema Full Stack desenvolvido para gerenciamento de gastos residenciais, permitindo cadastro de pessoas, transações financeiras e consultas consolidadas de receitas, despesas e saldo.
+
+## Demonstração
+
+| Serviço  | Link                                                                                                 |
+|----------|------------------------------------------------------------------------------------------------------|
+| Frontend | [https://controle-gastos-fullstack.vercel.app](https://controle-gastos-fullstack.vercel.app)         |
+| Backend  | [https://controlegastos-tbom.onrender.com/api](https://controlegastos-tbom.onrender.com/api)         |
+| Swagger  | Disponível apenas em ambiente de desenvolvimento.                                                    |
+
+OBS: Checar rotas disponíveis da API em [backend/ControleGastos.API/README.md#endpoints](backend/ControleGastos.API/README.md#endpoints).
 
 ## Tecnologias
 
@@ -98,7 +114,7 @@ Adicione a conection string do banco selecionado e depois execute:
 dotnet watch run --launch-profile Production
 ```
 
-### URLs
+### URLs Backend
 
 API disponível em:
 
@@ -138,7 +154,7 @@ npm run dev:prod
 npm run build
 ```
 
-### URLs
+### URLs Frontend
 
 Aplicação disponível em:
 
