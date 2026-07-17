@@ -27,10 +27,48 @@ Instale as dependências:
 npm install
 ```
 
+### Configuração de Ambientes
+
+A aplicação utiliza variáveis de ambiente do Vite.
+
+### Desenvolvimento
+
+Utiliza automaticamente:
+
+```text
+.env.development
+```
+
+Ou utiliza o fallback no aruivo axios.ts:
+
+```text
+http://localhost:5001/api
+```
+
 Execute a aplicação:
 
 ```bash
 npm run dev
+```
+
+### Produção
+
+Utiliza:
+
+```text
+.env.production
+```
+
+Para executar localmente utilizando a API publicada:
+
+```bash
+npm run dev:prod
+```
+
+Para gerar a versão de produção:
+
+```bash
+npm run build
 ```
 
 ---
@@ -63,14 +101,15 @@ src
 
 - Cadastro
 - Exclusão
-- Consulta de resumo financeiro
+- Resumo individual
 - Histórico de transações
+- Cadastro de transações diretamente pela pessoa
 
 ### Transações
 
 - Cadastro
-- Listagem
-- Filtros
+- Listagem completa
+- Filtros por pessoa
 
 ---
 

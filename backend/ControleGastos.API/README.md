@@ -16,12 +16,14 @@ API REST desenvolvida em ASP.NET Core 9 para gerenciamento de gastos residenciai
 
 ## Configuração de Ambientes
 
-A aplicação possui suporte a dois ambientes de execução:
+A aplicação possui dois perfis de execução:
 
-- **Development**: utiliza o arquivo `appsettings.Development.json`.
-- **Production**: utiliza o arquivo `appsettings.Production.json`.
+| Ambiente    | Configuração                   |
+|-------------|--------------------------------|
+| Development | `appsettings.Development.json` |
+| Production  | `appsettings.Production.json`  |
 
-O arquivo `appsettings.Production.json` está no `.gitignore`, portanto não é enviado ao repositório.
+O arquivo `appsettings.Production.json` não faz parte do repositório e está listado no `.gitignore`.
 
 Para facilitar a configuração existe o arquivo:
 
@@ -39,7 +41,9 @@ e preencher a string de conexão do banco de dados escolhido.
 
 ## Como executar
 
-### 1. Subir o banco na raíz do projeto (ControleGastos)
+### 1. Subir o banco PostgreSQL
+
+Na raíz do projeto (ControleGastos):
 
 ```bash
 docker compose up -d
