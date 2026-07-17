@@ -82,6 +82,8 @@ docker compose up -d
 
 ### 3. Executar o Backend
 
+#### Ambiente de Desenvolvimento
+
 ```bash
 cd backend/ControleGastos.API
 
@@ -102,6 +104,30 @@ Swagger:
 
 ```bash
 http://localhost:5001/swagger
+```
+
+### Ambiente de Produção (Opcional)
+
+O projeto também suporta execução utilizando o perfil **Production**, permitindo utilizar um banco de dados remoto (como Neon).
+
+Crie um arquivo:
+
+```text
+backend/ControleGastos.API/appsettings.Production.json
+```
+
+utilizando como base:
+
+```text
+backend/ControleGastos.API/appsettings.Production.json.example
+```
+
+Adicione a conection string do banco selecionado e depois execute:
+
+```bash
+dotnet ef database update --launch-profile Production
+
+dotnet watch run --launch-profile Production
 ```
 
 ---

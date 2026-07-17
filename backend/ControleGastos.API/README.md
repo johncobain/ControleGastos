@@ -14,6 +14,29 @@ API REST desenvolvida em ASP.NET Core 9 para gerenciamento de gastos residenciai
 
 ---
 
+## Configuração de Ambientes
+
+A aplicação possui suporte a dois ambientes de execução:
+
+- **Development**: utiliza o arquivo `appsettings.Development.json`.
+- **Production**: utiliza o arquivo `appsettings.Production.json`.
+
+O arquivo `appsettings.Production.json` está no `.gitignore`, portanto não é enviado ao repositório.
+
+Para facilitar a configuração existe o arquivo:
+
+```text
+appsettings.Production.json.example
+```
+
+Basta copiá-lo para:
+
+```text
+appsettings.Production.json
+```
+
+e preencher a string de conexão do banco de dados escolhido.
+
 ## Como executar
 
 ### 1. Subir o banco na raíz do projeto (ControleGastos)
@@ -32,6 +55,22 @@ dotnet ef database update
 
 ```bash
 dotnet watch run
+```
+
+## Executando com Ambiente Produção
+
+Após configurar o arquivo `appsettings.Production.json`, execute:
+
+### Aplicar migrations
+
+```bash
+dotnet ef database update --launch-profile Production
+```
+
+### Iniciar a aplicação
+
+```bash
+dotnet watch run --launch-profile Production
 ```
 
 ---
