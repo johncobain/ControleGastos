@@ -1,5 +1,8 @@
 {
   "ConnectionStrings": {
     "DefaultConnection": "<Database Connection String>"
-  }
+  },
+  "AllowedOrigins": [
+    "<Frontend Production Url>"
+  ]
 }
