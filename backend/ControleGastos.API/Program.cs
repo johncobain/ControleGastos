@@ -84,6 +84,25 @@ builder.Services.AddScoped<ISummaryService, SummaryService>();
 
 var app = builder.Build();
 
+// Aplicando migrações pendentes no banco de dados automaticamente ao iniciar a aplicação
+using (var scope = app.Services.CreateScope())
+{
+    var logger = scope.ServiceProvider
+        .GetRequiredService<ILogger<Program>>();
+    try
+    {
+        logger.LogInformation("Applying pending migrations...");
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        db.Database.Migrate();
+        logger.LogInformation("Database is up to date.");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Error applying migrations.");
+        throw;
+    }
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

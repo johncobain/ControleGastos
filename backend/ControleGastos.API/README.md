@@ -45,13 +45,7 @@ e preencher a string de conexão do banco de dados escolhido.
 docker compose up -d
 ```
 
-### 2. Aplicar migrations (em ControleGastos/backend/ControleGastos.API)
-
-```bash
-dotnet ef database update
-```
-
-### 3. Executar a aplicação
+### 2. Executar a aplicação
 
 ```bash
 dotnet watch run
@@ -61,12 +55,6 @@ dotnet watch run
 
 Após configurar o arquivo `appsettings.Production.json`, execute:
 
-### Aplicar migrations
-
-```bash
-dotnet ef database update --launch-profile Production
-```
-
 ### Iniciar a aplicação
 
 ```bash
@@ -75,12 +63,28 @@ dotnet watch run --launch-profile Production
 
 ---
 
-## Swagger
+## Swagger (Apenas Profile Development)
 
 Após iniciar a aplicação:
 
 ```bash
 http://localhost:5001/swagger
+```
+
+## Desenvolvimento
+
+A aplicação aplica automaticamente todas as migrations pendentes durante a inicialização.
+
+Para alterações no modelo de dados, é necessário criar novas migrations utilizando a ferramenta Entity Framework CLI (`dotnet-ef`).
+
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+Para criar uma nova migration, execute:
+
+```bash
+dotnet ef migrations add NomeDaMigration
 ```
 
 ---
