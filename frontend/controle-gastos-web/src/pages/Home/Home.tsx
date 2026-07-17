@@ -153,7 +153,7 @@ const Home = () => {
       </section>
 
       <section className="flex-column gap-md">
-        <h3>Top 5 Pessoas</h3>
+        <h3>Maiores Saldos</h3>
         {highlightedPeople.length === 0 ? (
           <EmptyState
             title="Nenhuma pessoa cadastrada"
