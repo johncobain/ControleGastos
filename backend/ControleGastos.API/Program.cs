@@ -81,6 +81,7 @@ builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ISummaryService, SummaryService>();
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
@@ -113,11 +114,8 @@ else
     app.UseHttpsRedirection();
 }
 
-app.MapGet("/health", () => Results.Ok(new
-{
-    status = "ok",
-    timestamp = DateTime.UtcNow
-}));
+app.MapHealthChecks("/health");
+app.MapMethods("/health", new[] { "HEAD" }, () => Results.Ok());
 
 app.UseCors(CorsPolicyName);
 
