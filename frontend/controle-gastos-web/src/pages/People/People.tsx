@@ -169,7 +169,7 @@ const People = () => {
         {loading && <Loading message="Carregando dados..."/>}
         {!loading && (
           <>
-            <div className="flex gap-md mb-lg">
+            <div className="filters">
               <Input
                 label="Pesquisar Nome"
                 id="name"

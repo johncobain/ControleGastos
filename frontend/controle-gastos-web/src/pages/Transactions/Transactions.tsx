@@ -113,7 +113,7 @@ const Transactions = () => {
         {loading ? (<Loading message="Carregando transações..." />) 
         : (
           <>
-            <div className="flex gap-md mb-lg">
+            <div className="filters">
               <Input
                 label="Pesquisar Descrição"
                 id="description"
