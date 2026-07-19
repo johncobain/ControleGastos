@@ -1,0 +1,54 @@
+.person-card {
+  display: grid;
+  grid-template-columns: 200px repeat(3, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.person-card-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.person-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-self: end;
+}
+
+@media (max-width: 768px) {
+  .person-card {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "info    info"
+      "income  expense"
+      "balance balance"
+      "actions actions";
+    row-gap: 1rem;
+  }
+
+  .person-card-info {
+    grid-area: info;
+  }
+
+  .person-card-stat--income {
+    grid-area: income;
+  }
+
+  .person-card-stat--expense {
+    grid-area: expense;
+  }
+
+  .person-card-stat--balance {
+    grid-area: balance;
+  }
+
+  .person-card-actions {
+    grid-area: actions;
+    justify-self: stretch;
+  }
+
+  .person-card-actions button {
+    flex: 1;
+  }
+}
